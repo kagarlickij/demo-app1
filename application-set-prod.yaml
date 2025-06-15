@@ -25,7 +25,7 @@ spec:
             - '../../{{path}}/prod-values.yaml'
       destination:
         server: https://kubernetes.default.svc
-        namespace: demo-app1-prod
+        namespace: demo-app-prod
       syncPolicy:
         automated:
           prune: true
