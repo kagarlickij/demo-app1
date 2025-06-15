@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/kagarlickij/demo-app1.git
     targetRevision: main
-    path: ./demo-app1-chart
+    path: ./charts/demo-app1
     helm:
       valueFiles:
-        - ../prod-values.yaml #NOTE: this path starts from helm chart path
+        - ../../argocd/applications/demo-app1/test-values-main.yaml #NOTE: this path starts from helm chart path
 
   destination:
     server: https://kubernetes.default.svc
