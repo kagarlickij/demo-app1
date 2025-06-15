@@ -1,37 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: nginx-hello-world
+  name: nginx-hello-world-prod
   namespace: argocd
 spec:
   generators:
-    # - list:
-    #     elements:
-    #       - name: nginx-hello-world
     - git:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         revision: main
-        # files:
-        #   - path: argocd/applications/**/prod-values*
         directories:
           - path: argocd/applications/*
 
-
   template:
     metadata:
-      name: '{{path.basename}}-prod' #NOTE: should be `demo-app1-chart-prod`; `{{name}} is use list`
+      name: '{{path.basename}}-prod' #NOTE: should be e.g. `demo-app1-chart-prod`
     spec:
       project: default
       source:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         targetRevision: main
-        path: charts/{{path.basename}} #'{{path.basename}}' #NOTE: should be `demo-app1-chart`
+        path: charts/{{path.basename}} #'{{path.basename}}' #NOTE: should be `charts/demo-app1-chart`
         helm:
           valueFiles:
             - '../../{{path}}/prod-values.yaml'
       destination:
         server: https://kubernetes.default.svc
-        namespace: demo-app1
+        namespace: demo-app1-prod
       syncPolicy:
         automated:
           prune: true

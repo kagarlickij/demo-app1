@@ -1,5 +1,5 @@
 apiVersion: v2
-name: app1
+name: app2
 description: A simple Helm chart for NGINX Hello World
 type: application
 version: 0.1.0

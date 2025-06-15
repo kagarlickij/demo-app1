@@ -4,7 +4,7 @@ html:
   index: |
     <!DOCTYPE html>
     <html>
-    <head><title>PROD</title></head>
+    <head><title>TEST</title></head>
     <body>
       <h1>app1-v1</h1>
     </body>
