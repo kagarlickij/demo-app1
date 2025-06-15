@@ -5,19 +5,19 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    # - list:
-    #     elements:
-    #       - name: nginx-hello-world
-    #         namespace: demo-app1
-    - git:
-        repoURL: https://github.com/kagarlickij/demo-app1.git
-        revision: main
-        directories:
-          - path: charts/* #NOTE: path to root of all charts
+    - list:
+        elements:
+          - name: nginx-hello-world
+            # namespace: demo-app1
+    # - git:
+    #     repoURL: https://github.com/kagarlickij/demo-app1.git
+    #     revision: main
+    #     directories:
+    #       - path: charts/* #NOTE: path to root of all charts
 
   template:
     metadata:
-      name: '{{path.basename}}-prod' #NOTE: should be `demo-app1-chart-prod`
+      name: '{{name}}' #'{{path.basename}}-prod' #NOTE: should be `demo-app1-chart-prod`
     spec:
       project: default
       source:
