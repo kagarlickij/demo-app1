@@ -5,28 +5,27 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - list:
-        elements:
-          - name: nginx-hello-world
-            # namespace: demo-app1
-    # - git:
-    #     repoURL: https://github.com/kagarlickij/demo-app1.git
-    #     revision: main
-    #     directories:
-    #       - path: charts/* #NOTE: path to root of all charts
+    # - list:
+    #     elements:
+    #       - name: nginx-hello-world
+    - git:
+        repoURL: https://github.com/kagarlickij/demo-app1.git
+        revision: main
+        files:
+          - path: argocd/applications/**/prod-values*
 
   template:
     metadata:
-      name: '{{name}}' #'{{path.basename}}-prod' #NOTE: should be `demo-app1-chart-prod`
+      name: '{{path.basename}}-prod' #NOTE: should be `demo-app1-chart-prod`; `{{name}} is use list`
     spec:
       project: default
       source:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         targetRevision: main
-        path: ./charts/demo-app1-chart #'{{path.basename}}' #NOTE: should be `demo-app1-chart`
+        path: charts/{{path.basename}} #'{{path.basename}}' #NOTE: should be `demo-app1-chart`
         helm:
           valueFiles:
-            - ../../prod-values.yaml
+            - '../../{{path}}/prod-values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: demo-app1
