@@ -15,7 +15,7 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}-test-{{suffix}}' #NOTE: should be e.g. `demo-app1-test-main`
+      name: '{{path.basename}}-test-{{suffix}}' #NOTE: should be e.g. `demo-app1-test-main`, suffix is defined in values files
     spec:
       project: default
       source:

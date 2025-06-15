@@ -13,16 +13,16 @@ spec:
 
   template:
     metadata:
-      name: '{{path.basename}}-prod' #NOTE: should be e.g. `demo-app1-chart-prod`
+      name: '{{path.basename}}-prod-{{suffix}}' #NOTE: should be e.g. `demo-app1-prod-main`, suffix is defined in values files
     spec:
       project: default
       source:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         targetRevision: main
-        path: charts/{{path.basename}} #'{{path.basename}}' #NOTE: should be `charts/demo-app1-chart`
+        path: charts/{{path.basename}} #NOTE: resolves `charts/demo-app1`
         helm:
           valueFiles:
-            - '../../{{path}}/prod-values.yaml'
+            - '../../{{path}}/prod-values-{{suffix}}.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: demo-app-prod
