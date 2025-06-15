@@ -23,10 +23,10 @@ spec:
       source:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         targetRevision: main
-        path: '{{path.basename}}' #NOTE: should be `demo-app1-chart`
+        path: ./charts/demo-app1-chart #'{{path.basename}}' #NOTE: should be `demo-app1-chart`
         helm:
           valueFiles:
-            - ../prod-values.yaml
+            - ../../prod-values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: demo-app1
