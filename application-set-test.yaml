@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx-hello-world-test
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/kagarlickij/demo-app1.git
+        revision: main
+        directories:
+          - path: argocd/applications/*
+
+  template:
+    metadata:
+      name: '{{path.basename}}-test' #NOTE: should be e.g. `demo-app1-chart-prod`
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/kagarlickij/demo-app1.git
+        targetRevision: main
+        path: charts/{{path.basename}} #'{{path.basename}}' #NOTE: should be `charts/demo-app1-chart`
+        helm:
+          valueFiles:
+            - '../../{{path}}/test-values.yaml'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: demo-app1-test
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
