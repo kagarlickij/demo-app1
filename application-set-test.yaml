@@ -8,8 +8,10 @@ spec:
     - git:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         revision: main
-        directories:
-          - path: argocd/applications/*
+        # directories:
+        #   - path: argocd/applications/*
+        files:
+          - path: argocd/applications/**/test-values*
 
   template:
     metadata:
