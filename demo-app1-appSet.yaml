@@ -13,7 +13,7 @@ spec:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         revision: main
         directories:
-          - path: ./* #NOTE: path to root of all charts
+          - path: charts/* #NOTE: path to root of all charts
 
   template:
     metadata:
