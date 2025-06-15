@@ -11,8 +11,11 @@ spec:
     - git:
         repoURL: https://github.com/kagarlickij/demo-app1.git
         revision: main
-        files:
-          - path: argocd/applications/**/prod-values*
+        # files:
+        #   - path: argocd/applications/**/prod-values*
+        directories:
+          - path: argocd/applications/*
+
 
   template:
     metadata:
