@@ -1,0 +1,11 @@
+replicaCount: 2
+
+html:
+  index: |
+    <!DOCTYPE html>
+    <html>
+    <head><title>PROD</title></head>
+    <body>
+      <h1>prod-v1</h1>
+    </body>
+    </html>
