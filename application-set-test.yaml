@@ -27,7 +27,7 @@ spec:
             - '../../{{path}}/test-values-{{suffix}}.yaml'
       destination:
         server: https://kubernetes.default.svc
-        namespace: demo-app-test
+        namespace: demo-app-test2
       syncPolicy:
         automated:
           prune: true
